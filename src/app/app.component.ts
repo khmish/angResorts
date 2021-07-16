@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angResorts';
+  loading: boolean = false;
+  constructor(
+    private _loading: LoadingService
+  ){ }
+
+  ngOnInit() {
+    localStorage.setItem('token','hassan ali');
+    this.listenToLoading();
+  }
+  listenToLoading(): void {
+    this._loading.loadingSub
+      // .pipe(delay(0)) // This prevents a ExpressionChangedAfterItHasBeenCheckedError for subsequent requests
+      .subscribe((loading) => {
+        this.loading = loading;
+      });
+  }
 }
