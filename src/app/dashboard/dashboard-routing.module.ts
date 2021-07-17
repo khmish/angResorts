@@ -8,6 +8,10 @@ const routes: Routes = [
     component:DashboardComponent
   },
   {
+    path:'availableTime',
+    loadChildren:() => import('./availabe-time/availabe-time.module').then((mod) => mod.AvailabeTimeModule)
+  },
+  {
     path:'resort',
     loadChildren:() => import('./resorts/resorts-board/resorts-board.module').then((mod) => mod.ResortsBoardModule)
   },

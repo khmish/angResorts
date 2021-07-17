@@ -1,0 +1,98 @@
+<div class="row justify-content-center">
+  <div class="container p-3 mr-1">
+    <div class="row justify-content-center p-2 mx-1">
+      <h2 class="justify-content-center">Add Resort</h2>
+    </div>
+
+    <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+      <div class="row justify-content-center p-2 mx-1">
+        <mat-form-field>
+          <mat-label>name</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+            name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-center p-2 mx-1">
+        <mat-form-field>
+          <mat-label>description</mat-label>
+          <input matInput formControlName="description" />
+          <mat-error
+            *ngIf="addressForm.controls['description'].hasError('required')"
+          >
+            description is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-center p-2 mx-1">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Country</mat-label>
+            <mat-select
+              formControlName="country"
+              (selectionChange)="selectedCountry($event.value)"
+            >
+              <mat-option
+                *ngFor="let countryItem of countriesList"
+                value="{{countryItem.name}}"
+                >{{countryItem.name}}</mat-option
+              >
+            </mat-select>
+            <mat-error
+              *ngIf="addressForm.controls['country'].hasError('required')"
+            >
+              country is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col" *ngIf="this.addressForm.controls.country.value!=null">
+          <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <mat-select
+              formControlName="city"
+              (selectionChange)="selectedCity($event.value)"
+            >
+              <mat-option
+                *ngFor="let cityItem of citiesList"
+                value="{{cityItem.name}}"
+                >{{cityItem.name}}</mat-option
+              >
+            </mat-select>
+            <mat-error
+              *ngIf="addressForm.controls['city'].hasError('required')"
+            >
+              city is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col" *ngIf="this.addressForm.controls.city.value!=null">
+          <mat-form-field appearance="fill">
+            <mat-label>District</mat-label>
+            <mat-select
+              (selectionChange)="selectedDist($event.value)"
+              formControlName="district_id"
+            >
+              <mat-option
+                *ngFor="let distItem of distList"
+                value="{{distItem.name}}"
+                >{{distItem.name}}</mat-option
+              >
+            </mat-select>
+            <mat-error
+              *ngIf="addressForm.controls['district_id'].hasError('required')"
+            >
+              district is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row p-3 justify-content-center">
+        <div mat-dialog-actions>
+        <button mat-button color="primary">SAVE</button>
+          <button mat-button [mat-dialog-close]="" cdkFocusInitial>Close</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

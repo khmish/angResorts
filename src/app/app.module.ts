@@ -19,13 +19,15 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderComponent } from './loader/loader.component';
 import { HttpRequestInterceptor } from './services/http-request.interceptor';
 import { TokenInterceptor } from './services/token.interceptor';
-import { AddResortDialog, DeleteResortDialog, ResortsBoardComponent } from './dashboard/resorts/resorts-board/resorts-board.component';
+import { AddResortDialog, DeleteResortDialog, EditResortDialog, ResortsBoardComponent } from './dashboard/resorts/resorts-board/resorts-board.component';
 import { ResortsBoardModule } from './dashboard/resorts/resorts-board/resorts-board.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AvailabeTimeComponent } from './dashboard/availabe-time/availabe-time.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     DashboardComponent,
     AddResortDialog,
     DeleteResortDialog,
+    EditResortDialog,
+    AvailabeTimeComponent,
+    UsersComponent,
     
   ],
   imports: [
