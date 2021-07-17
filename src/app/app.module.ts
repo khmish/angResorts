@@ -19,12 +19,24 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderComponent } from './loader/loader.component';
 import { HttpRequestInterceptor } from './services/http-request.interceptor';
 import { TokenInterceptor } from './services/token.interceptor';
+import { AddResortDialog, DeleteResortDialog, ResortsBoardComponent } from './dashboard/resorts/resorts-board/resorts-board.component';
+import { ResortsBoardModule } from './dashboard/resorts/resorts-board/resorts-board.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LoaderComponent,
+    ResortsBoardComponent,
+    DashboardComponent,
+    AddResortDialog,
+    DeleteResortDialog,
+    
   ],
   imports: [
     BrowserModule,
@@ -38,7 +50,12 @@ import { TokenInterceptor } from './services/token.interceptor';
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ResortsBoardModule,
+    MatSidenavModule,
+    MatTableModule,
+    MatDialogModule,
+    MatSnackBarModule,
   ],
   providers: [
     HttpRequestService,

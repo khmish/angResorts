@@ -19,9 +19,11 @@ export class AppComponent {
   }
   listenToLoading(): void {
     this._loading.loadingSub
-      // .pipe(delay(0)) // This prevents a ExpressionChangedAfterItHasBeenCheckedError for subsequent requests
+      // .pipe() // This prevents a ExpressionChangedAfterItHasBeenCheckedError for subsequent requests
       .subscribe((loading) => {
-        this.loading = loading;
+        setTimeout(() => {
+          this.loading = loading;
+        }, 0);
       });
   }
 }
