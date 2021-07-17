@@ -15,6 +15,10 @@ const routes: Routes = [
     path:'resort',
     loadChildren:() => import('./resorts/resorts-board/resorts-board.module').then((mod) => mod.ResortsBoardModule)
   },
+  {
+    path:'user',
+    loadChildren:() => import('./users/users.module').then((mod) => mod.UsersModule)
+  },
 ];
 
 @NgModule({

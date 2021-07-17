@@ -27,7 +27,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AvailabeTimeComponent } from './dashboard/availabe-time/availabe-time.component';
-import { UsersComponent } from './users/users.component';
+import { UsersComponent } from './dashboard/users/users.component';
 
 @NgModule({
   declarations: [
