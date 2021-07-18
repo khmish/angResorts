@@ -1,83 +1,100 @@
 <div class="row" style="height: 100%">
   <div class="col-4">
-  
-  <app-dashboard></app-dashboard>
+    <app-dashboard></app-dashboard>
   </div>
 
   <div class="col p-3">
-  
-
-  <div class="container">
-
-  <div class="example-button-container">
+    <div class="container">
+      <div class="example-button-container">
         <button mat-fab color="primary" (click)="addData()">
           <i class="bi bi-plus-lg"></i>
         </button>
       </div>
-</div>
+    </div>
 
-<mat-form-field appearance="standard">
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-</mat-form-field>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 90%">
+    <div class="col">
 
-  <!--- Note that these columns can be defined in any order.
+      <div class="col p-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Select Resort</mat-label>
+          <mat-select>
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+          <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="col p-3">
+        <mat-form-field appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. ium"
+            #input
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+      style="width: 90%"
+    >
+      <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> 
-        {{element.id}}
-      </td>
-  </ng-container>
-  <!-- Position Column -->
-  <ng-container matColumnDef="dist_id">
-    <th mat-header-cell *matHeaderCellDef> Modifications. </th>
-    <td mat-cell *matCellDef="let element"> 
-      
-        <button mat-mini-fab color="primary" (click)="edit(element.id)" >
-          <i class="bi bi-pencil-square"></i>
-        </button>
-        &nbsp;
-        <button mat-mini-fab color="warn"  (click)="delete(element.id)">
-          <i class="bi bi-trash-fill"></i>
-        </button>
-      </td>
-  </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.id }}
+        </td>
+      </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="dist_id">
+        <th mat-header-cell *matHeaderCellDef>Modifications.</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-mini-fab color="primary" (click)="edit(element.id)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          &nbsp;
+          <button mat-mini-fab color="warn" (click)="delete(element.id)">
+            <i class="bi bi-trash-fill"></i>
+          </button>
+        </td>
+      </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.resort?element.resort.name:'DELETED'}} </td>
-  </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.resort ? element.resort.name : "DELETED" }}
+        </td>
+      </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="dist_name">
-    <th mat-header-cell *matHeaderCellDef> district </th>
-    <td mat-cell *matCellDef="let element"> {{element.resort?element.resort.district.name:'DELETED'}} </td>
-  </ng-container>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="dist_name">
+        <th mat-header-cell *matHeaderCellDef>district</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.resort ? element.resort.district.name : "DELETED" }}
+        </td>
+      </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="availableDate">
-    <th mat-header-cell *matHeaderCellDef> date </th>
-    <td mat-cell *matCellDef="let element"> {{element.availableDate.substring(0,10)}} </td>
-  </ng-container>
+      <!-- Weight Column -->
+      <ng-container matColumnDef="availableDate">
+        <th mat-header-cell *matHeaderCellDef>date</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.availableDate.substring(0, 10) }}
+        </td>
+      </ng-container>
 
-  <!-- Weight Column -->
-  
+      <!-- Weight Column -->
 
-  
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-
-
-
-
-
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
   </div>
 </div>
-
-
