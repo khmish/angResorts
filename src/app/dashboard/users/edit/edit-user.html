@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+  <div class="container p-3 mr-1">
+    <div class="row justify-content-center p-2 mx-1">
+      <h2 class="justify-content-center">Edit User</h2>
+    </div>
+
+    <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+      <div class="row justify-content-center p-2 mx-1">
+        <mat-form-field>
+          <mat-label>name</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error *ngIf="addressForm.controls['name'].hasError('required')">
+            name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-center p-2 mx-1">
+        <mat-form-field>
+          <mat-label>password</mat-label>
+          <input type="password" matInput formControlName="password" />
+          <mat-error *ngIf="addressForm.controls['password'].hasError('required')">
+            password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-center p-2 mx-1">
+        <mat-form-field>
+          <mat-label>email</mat-label>
+          <input matInput formControlName="email" />
+          <mat-error
+            *ngIf="addressForm.controls['email'].hasError('required')"
+          >
+            email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-center p-2 mx-1">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>role</mat-label>
+            <mat-select
+              formControlName="role"
+              (selectionChange)="selectedRole($event.value)"
+            >
+              <mat-option value="admin">Admin</mat-option>
+              <mat-option value="user">User</mat-option>
+              <mat-option value="owner">Owner</mat-option>
+              
+            </mat-select>
+            <mat-error
+              *ngIf="addressForm.controls['role'].hasError('required')"
+            >
+              role is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+      </div>
+      <div class="row p-3 justify-content-center">
+        <div mat-dialog-actions>
+        <button mat-button color="primary">SAVE</button>
+          <button mat-button [mat-dialog-close]="" cdkFocusInitial>Close</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

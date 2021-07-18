@@ -9,12 +9,40 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 
-export interface PeriodicElement {
-  name: string;
-  id: number;
-  description: string;
-  longitude?: string;
-}
+// export interface Country {
+//   id: number;
+//   name: string;
+// }
+
+// export interface City {
+//   id: number;
+//   name: string;
+//   country_id: number;
+//   country: Country;
+// }
+
+// export interface District {
+//   id: number;
+//   name: string;
+//   city_id: number;
+//   city: City;
+// }
+
+// export interface Resort {
+//   id: number;
+//   name: string;
+//   description: string;
+//   district: District;
+// }
+
+// export interface RootObject {
+//   id: number;
+//   availableDate: Date;
+//   startTime: string;
+//   endTime: string;
+//   resort: Resort;
+//   cost: number;
+// }
 
 @Component({
   selector: 'app-availabe-time',
@@ -22,18 +50,23 @@ export interface PeriodicElement {
   styleUrls: ['./availabe-time.component.css']
 })
 export class AvailabeTimeComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'description', 'longitude'];
+  displayedColumns: string[] = ['id', 'availableDate', 'name', 'dist_name','dist_id'];
+  
   dataSource = new MatTableDataSource([]);
   constructor(private request: HttpRequestService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.request.get("availabletimes").subscribe((data) => {
+      
       this.dataSource = new MatTableDataSource(data.data);
     });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  addData(){
+
   }
 
 }
