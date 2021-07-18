@@ -26,9 +26,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { AvailabeTimeComponent } from './dashboard/availabe-time/availabe-time.component';
+import { AddAvailabeTimeDialog, AvailabeTimeComponent, DeleteAvailabeTimeDialog, EditAvailabeTimeDialog } from './dashboard/availabe-time/availabe-time.component';
 import { AddUserDialog, DeleteUserDialog, EditUserDialog, UsersComponent } from './dashboard/users/users.component';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,9 @@ import { AddUserDialog, DeleteUserDialog, EditUserDialog, UsersComponent } from 
     AddUserDialog,
     EditUserDialog,
     DeleteUserDialog,
+    AddAvailabeTimeDialog,
+    EditAvailabeTimeDialog,
+    DeleteAvailabeTimeDialog,
     
   ],
   imports: [
@@ -65,6 +70,9 @@ import { AddUserDialog, DeleteUserDialog, EditUserDialog, UsersComponent } from 
     MatTableModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMaterialTimepickerModule,
   ],
   providers: [
     HttpRequestService,

@@ -17,8 +17,11 @@
       <div class="col p-3">
         <mat-form-field appearance="fill">
           <mat-label>Select Resort</mat-label>
-          <mat-select>
-            <mat-option value="option">Option</mat-option>
+          <mat-select (selectionChange)="onSelect($event)">
+            <mat-option
+                *ngFor="let resort of resortList"
+                value="{{resort.id}}"
+                >{{resort.name}}</mat-option>
           </mat-select>
           <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
         </mat-form-field>

@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+  <div class="container p-3 mr-1">
+    <div class="row justify-content-center p-2 mx-1">
+      <h2 class="justify-content-center">Edit available time</h2>
+    </div>
+
+    <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+      <div class="row justify-content-center p-2 mx-1">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="availableDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="addressForm.controls['availableDate'].hasError('required')"
+          >
+            available Date is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-center p-3 mx-1">
+        <div class="ngx-timepicker-field-example">
+          <ngx-timepicker-field
+            [controlOnly]="true"
+            formControlName="startTime"
+          ></ngx-timepicker-field>
+          <mat-error
+            *ngIf="addressForm.controls['startTime'].hasError('required')"
+          >
+            start Time is <strong>required</strong>
+          </mat-error>
+        </div>
+      </div>
+      <div class="row justify-content-center p-3 mx-1">
+        <div class="ngx-timepicker-field-example">
+          <ngx-timepicker-field
+            [controlOnly]="true"
+            formControlName="endTime"
+          ></ngx-timepicker-field>
+          <mat-error
+            *ngIf="addressForm.controls['endTime'].hasError('required')"
+          >
+            end Time is <strong>required</strong>
+          </mat-error>
+        </div>
+      </div>
+      <div class="row justify-content-center p-2 mx-1">
+        <mat-form-field>
+          <mat-label>cost</mat-label>
+          <input matInput formControlName="cost" />
+          <mat-error *ngIf="addressForm.controls['cost'].hasError('required')">
+            cost is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row p-3 justify-content-center">
+        <div mat-dialog-actions>
+          <button mat-button color="primary">SAVE</button>
+          <button mat-button [mat-dialog-close]="" cdkFocusInitial>
+            Close
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
