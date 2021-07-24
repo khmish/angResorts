@@ -14,7 +14,6 @@ export class AppComponent {
   ){ }
 
   ngOnInit() {
-    localStorage.setItem('token','hassan ali');
     this.listenToLoading();
   }
   listenToLoading(): void {

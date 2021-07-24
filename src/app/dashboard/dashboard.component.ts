@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  @Input() user="";
   constructor() { }
 
   ngOnInit(): void {
+    this.user=JSON.parse(localStorage.getItem("user")).name;
+    // console.log(this.user);
+    
   }
 
 }
