@@ -8,6 +8,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/services/auth.service';
 
 // export interface Country {
 //   id: number;
@@ -50,25 +51,28 @@ import {
   styleUrls: ['./availabe-time.component.css']
 })
 export class AvailabeTimeComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'availableDate', 'name', 'dist_name','dist_id'];
-  
+  displayedColumns: string[] = ['id', 'availableDate', 'name', 'dist_name', 'dist_id'];
+
   dataSource = [];
 
-  resortList=[];
+  resortList = [];
   selectedResort;
-  user=1;
+  user = "";
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   constructor(
     private request: HttpRequestService,
-     public dialog: MatDialog,
+    public dialog: MatDialog,
     private _snackBar: MatSnackBar,
-
-     ) { }
+    private auth: AuthService
+  ) { }
 
   ngOnInit(): void {
-    this.request.get("resorts?user="+this.user).subscribe((data) => {
-      
+    this.user= JSON.parse(localStorage.getItem("user")).id;
+    console.log(this.user);
+    
+    this.request.get("resorts?user=" + this.user).subscribe((data) => {
+
       this.resortList = (data.data);
     });
   }
@@ -76,16 +80,16 @@ export class AvailabeTimeComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     // this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  addData(){
-    if(this.selectedResort){
+  addData() {
+    if (this.selectedResort) {
 
-      this.dialog.open(AddAvailabeTimeDialog,{
-        data:{user:this.user,resort:this.selectedResort}
-      }).afterClosed().subscribe((val)=>{
+      this.dialog.open(AddAvailabeTimeDialog, {
+        data: { user: this.user, resort: this.selectedResort }
+      }).afterClosed().subscribe((val) => {
         this.onSelect(this.selectedResort);
       });
     }
-    else{
+    else {
       this.openSnackBar();
     }
   }
@@ -96,15 +100,15 @@ export class AvailabeTimeComponent implements OnInit {
     });
 
   }
-  onSelect(value){
-    
+  onSelect(value) {
+
     console.log(value);
-    this.selectedResort=value.value;
-    this.request.get("availabletimes?Resort_id="+this.selectedResort).subscribe((data) => {
-      
+    this.selectedResort = value.value;
+    this.request.get("availabletimes?Resort_id=" + this.selectedResort).subscribe((data) => {
+
       this.dataSource = (data.data);
     });
-    
+
   }
 
   edit(id) {
@@ -122,7 +126,7 @@ export class AvailabeTimeComponent implements OnInit {
       }
     });
     this.dialog.open(EditAvailabeTimeDialog, {
-      data: {user:this.user,resort:this.selectedResort,id:editedItem}
+      data: { user: this.user, resort: this.selectedResort, id: editedItem }
     }).afterClosed().subscribe(
       (data) => {
         this.onSelect(this.selectedResort);
@@ -144,7 +148,7 @@ export class AvailabeTimeComponent implements OnInit {
       }
     });
     this.dialog.open(DeleteAvailabeTimeDialog, {
-      data: {id:editedItem}
+      data: { id: editedItem }
     }).afterClosed().subscribe(
       (data) => {
         this.onSelect(this.selectedResort);
@@ -185,7 +189,7 @@ export class AddAvailabeTimeDialog {
     Resort_id: [null],
 
   });
-  
+
 
   openSnackBar() {
     this._snackBar.open('Saved!', 'Close', {
@@ -245,7 +249,7 @@ export class EditAvailabeTimeDialog {
     Resort_id: [null],
 
   });
-  
+
 
   openSnackBar() {
     this._snackBar.open('Saved!', 'Close', {
@@ -257,7 +261,7 @@ export class EditAvailabeTimeDialog {
 
   ngOnInit(): void {
     console.log(this.data.id);
-    
+
     this.addressForm.patchValue(this.data.id);
   }
 
@@ -269,7 +273,7 @@ export class EditAvailabeTimeDialog {
     if (this.addressForm.valid) {
       this.addressForm.controls.createdBy.patchValue(this.data.user);
       this.addressForm.controls.Resort_id.patchValue(this.data.resort);
-      this.httpRequestService.put("availabletimes/"+this.data.id.id, this.addressForm.value).subscribe((data) => {
+      this.httpRequestService.put("availabletimes/" + this.data.id.id, this.addressForm.value).subscribe((data) => {
         // console.log("sent data add");
 
         this.openSnackBar();
@@ -308,7 +312,7 @@ export class DeleteAvailabeTimeDialog {
     Resort_id: [null],
 
   });
-  
+
 
   openSnackBar() {
     this._snackBar.open('Saved!', 'Close', {

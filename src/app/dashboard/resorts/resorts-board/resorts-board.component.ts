@@ -102,6 +102,7 @@ export class AddResortDialog {
 
   constructor(private fb: FormBuilder, private httpRequestService: HttpRequestService, private _snackBar: MatSnackBar, public dialogRef: MatDialogRef<AddResortDialog>) { }
   addressForm = this.fb.group({
+    createdBy:[null],
     name: [null, Validators.required],
     description: [null, Validators.required],
     country: [null, Validators.required],
@@ -180,6 +181,9 @@ export class AddResortDialog {
   }
 
   onSubmit() {
+    this.addressForm.controls.createdBy.patchValue(JSON.parse(localStorage.getItem("user")).id) ;
+    console.log(this.addressForm.value);
+    
     if (this.addressForm.valid) {
 
       this.httpRequestService.post("resorts", this.addressForm.value).subscribe((data) => {
@@ -240,6 +244,7 @@ export class EditResortDialog {
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
   addressForm = this.fb.group({
+    createdBy:[null],
     name: [null, Validators.required],
     description: [null, Validators.required],
     country: [null, Validators.required],
@@ -330,6 +335,7 @@ export class EditResortDialog {
   }
 
   onSubmit() {
+    this.addressForm.controls.createdBy.patchValue(JSON.parse(localStorage.getItem("user")).id);
     if (this.addressForm.valid) {
 
       this.httpRequestService.put("resorts/" + this.data.editedItem.id, this.addressForm.value).subscribe((data) => {
