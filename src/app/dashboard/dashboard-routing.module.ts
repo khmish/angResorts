@@ -24,6 +24,11 @@ const routes: Routes = [
     loadChildren:() => import('./users/users.module').then((mod) => mod.UsersModule)
     , canActivate: [GuardAuthGuard]
   },
+  {
+    path:'rent',
+    loadChildren:() => import('./rents/rents.module').then((mod) => mod.RentsModule)
+    , canActivate: [GuardAuthGuard]
+  },
 ];
 
 @NgModule({

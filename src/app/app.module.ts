@@ -22,6 +22,7 @@ import { TokenInterceptor } from './services/token.interceptor';
 import { AddResortDialog, DeleteResortDialog, EditResortDialog, ResortsBoardComponent } from './dashboard/resorts/resorts-board/resorts-board.component';
 import { ResortsBoardModule } from './dashboard/resorts/resorts-board/resorts-board.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -31,6 +32,7 @@ import { AddUserDialog, DeleteUserDialog, EditUserDialog, UsersComponent } from 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { RentsComponent } from './dashboard/rents/rents.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     AddAvailabeTimeDialog,
     EditAvailabeTimeDialog,
     DeleteAvailabeTimeDialog,
+    RentsComponent,
     
   ],
   imports: [
